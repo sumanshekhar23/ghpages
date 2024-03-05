@@ -1,7 +1,13 @@
 site_name: CI CD Documentation
 site_url: https://sumanshekhar23.github.io/ghpages/
-theme:
-  features:
-    - navigation.instant
-    - navigation.tabs
+=== "Tab 1"
+    Markdown **content**.
+
+    Multiple paragraphs.
+
+=== "Tab 2"
+    More Markdown **content**.
+
+    - list item a
+    - list item b
 
