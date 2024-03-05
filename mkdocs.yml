@@ -1,5 +1,7 @@
 site_name: CI CD Documentation
+site_url: https://sumanshekhar23.github.io/ghpages/
 theme:
   features:
     - navigation.instant
+    - navigation.tabs
 
