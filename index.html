@@ -1,199 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
-        
-        <link rel="canonical" href="https://sumanshekhar23.github.io/ghpages/">
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>CI CD Documentation</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Will You Be My Valentine? 💖</title>
+  <style>
+    :root {
+      --pink: #ff4081;
+      --dark-pink: #d81b60;
+      --light-pink: #ffebee;
+    }
 
-    <body class="homepage">
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href=".">CI CD Documentation</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem active">
-                                <a href="." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="about/" class="nav-link">About</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="ss/" class="nav-link">ss</a>
-                            </li>
-                        </ul>
+    body {
+      height: 100vh;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #fff1f7, #ffe4e9, #ffd1dc);
+      color: var(--dark-pink);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='24' font-size='24'>💘</text></svg>") 16 16, auto;
+    }
 
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="about/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      margin-bottom: 2rem;
+      text-align: center;
+      text-shadow: 0 4px 15px rgba(216,27,96,0.35);
+      animation: float 5s ease-in-out infinite;
+      z-index: 10;
+    }
 
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
+    .container {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+    }
+
+    .buttons {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4rem;
+      justify-content: center;
+      margin: 2rem 1rem;
+    }
+
+    button {
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      padding: 1rem 3.5rem;
+      border: none;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    #yes {
+      background: var(--pink);
+      color: white;
+      min-width: 180px;
+    }
+
+    #yes:hover {
+      transform: scale(1.15) rotate(3deg);
+      background: #f50057;
+      box-shadow: 0 15px 40px rgba(245,0,87,0.5);
+    }
+
+    #no {
+      background: #9e9e9e;
+      color: white;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 160px;
+    }
+
+    #no.scared   { background: #757575; }
+    #no.panicked { background: #616161; transform: translateX(-50%) scale(0.9); }
+    #no.desperate{ background: #424242; transform: translateX(-50%) scale(0.75); font-size: 90%; }
+
+    .heart-bg {
+      position: absolute;
+      font-size: 1.8rem;
+      pointer-events: none;
+      animation: drift 18s linear infinite;
+      opacity: 0.4;
+      user-select: none;
+    }
+
+    .heart-pop {
+      position: absolute;
+      font-size: 2.5rem;
+      pointer-events: none;
+      animation: popFloat 5s ease-out forwards;
+      user-select: none;
+    }
+
+    /* ♥ Falling rain hearts */
+    .heart-rain {
+      position: fixed;
+      font-size: 1.8rem;
+      pointer-events: none;
+      user-select: none;
+      z-index: 20;
+      top: -10vh;
+      animation: fall linear forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-25px); }
+    }
+
+    @keyframes drift {
+      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0.6; }
+      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes popFloat {
+      0%   { transform: translateY(0) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-250px) scale(1.8); opacity: 0; }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(120vh) translateX(var(--sway));
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .buttons { gap: 2rem; flex-direction: column; align-items: center; }
+      #no { position: static; transform: none; margin: 1.5rem auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Will you be my Valentine? 💕</h1>
+
+  <div class="container">
+    <div class="buttons">
+      <button id="yes">Yes!! 🥰💖</button>
+      <button id="no">No 😢</button>
     </div>
+  </div>
 
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="1"><a href="#welcome-to-mkdocs" class="nav-link">Welcome to MkDocs</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#commands" class="nav-link">Commands</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#project-layout" class="nav-link">Project layout</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#apna-page" class="nav-link">Apna Page</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre>
-<h2 id="apna-page">Apna Page</h2>
-<p>idhar aise hi dala hai sdfsf</p></div>
-            </div>
-        </div>
+  <script>
+    const noBtn = document.getElementById('no');
+    const yesBtn = document.getElementById('yes');
+    const body = document.body;
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script>
-            var base_url = ".",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="js/base.js"></script>
-        <script src="search/main.js"></script>
+    let dodgeCount = 0;
+    const noPhrases = [
+      "No 😔", 
+      "Are you sure? 😭", 
+      "Please reconsider... 🥺", 
+      "Don't do this to me 💔", 
+      "Last chance... 😢", 
+      "Okay... I guess... 😞"
+    ];
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
+    // Background floating hearts (gentle ambiance)
+    function createBgHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart-bg';
+      heart.textContent = ['💗','💖','💘','💝','💞','💓','💕'][Math.floor(Math.random()*7)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (12 + Math.random() * 12) + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      body.appendChild(heart);
+      setTimeout(() => heart.remove(), 30000);
+    }
 
-    </body>
+    setInterval(createBgHeart, 1200); // slower spawn rate
+
+    function spawnHearts(x, y, count = 5) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-pop';
+        heart.textContent = ['💗','💖','💘','💝','💞','💓','🫀','💕'][Math.floor(Math.random()*8)];
+        heart.style.left = (x + (Math.random()-0.5)*120) + 'px';
+        heart.style.top  = (y + (Math.random()-0.5)*120) + 'px';
+        heart.style.animationDuration = (2 + Math.random()*3) + 's';
+        body.appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+      }
+    }
+
+    // New: Heart rain on Yes!
+    function startHeartRain() {
+      const heartTypes = ['💖','💕','💗','💘','💝','💞','💓','🫶','❤️','💌'];
+      const count = 100; // how many hearts total
+
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.className = 'heart-rain';
+          heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+          
+          // Random horizontal start + sway direction
+          const left = Math.random() * 100;
+          const sway = (Math.random() > 0.5 ? '' : '-') + (20 + Math.random() * 60) + 'vw';
+          
+          heart.style.left = left + 'vw';
+          heart.style.setProperty('--sway', sway);
+          
+          // Random duration 6–14 seconds + slight delay
+          const duration = 6 + Math.random() * 8;
+          heart.style.animationDuration = duration + 's';
+          heart.style.animationDelay = (Math.random() * 2) + 's';
+          
+          // Random size & rotation start
+          heart.style.fontSize = (1.2 + Math.random() * 1.6) + 'rem';
+          heart.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
+          
+          body.appendChild(heart);
+          
+          // Clean up after animation
+          setTimeout(() => heart.remove(), (duration + 2) * 1000);
+        }, i * 40); // stagger creation a bit
+      }
+    }
+
+    yesBtn.addEventListener('click', () => {
+      // Confetti burst
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#ff4081', '#f50057', '#ff80ab', '#fce4ec']
+      });
+
+      // Start raining hearts!
+      startHeartRain();
+
+      setTimeout(() => {
+        alert("YAYYYYYY!!! 💖🎉 You said YES!!! I LOVE YOU FOREVER!!!\n\nLook at all the hearts falling for you~ 🥰");
+        // Optional: window.location.href = "...";
+      }, 1200); // delay alert so rain starts first
+    });
+
+    noBtn.addEventListener('mouseover', (e) => {
+      dodgeCount++;
+
+      if (dodgeCount >= 3) noBtn.classList.add('scared');
+      if (dodgeCount >= 6) {
+        noBtn.classList.add('panicked');
+        noBtn.textContent = noPhrases[Math.min(dodgeCount-3, noPhrases.length-1)];
+      }
+      if (dodgeCount >= 10) noBtn.classList.add('desperate');
+
+      const rect = noBtn.getBoundingClientRect();
+      const maxX = window.innerWidth - rect.width - 20;
+      const maxY = window.innerHeight - rect.height - 20;
+
+      let newX = Math.random() * maxX;
+      let newY = Math.random() * maxY;
+
+      if (dodgeCount < 5) {
+        newX = Math.max(window.innerWidth*0.15, Math.min(newX, window.innerWidth*0.85 - rect.width));
+        newY = Math.max(window.innerHeight*0.15, Math.min(newY, window.innerHeight*0.7 - rect.height));
+      }
+
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = newX + 'px';
+      noBtn.style.top  = newY + 'px';
+      noBtn.style.transform = 'none';
+
+      spawnHearts(e.clientX, e.clientY, 4);
+
+      const currentScale = parseFloat(yesBtn.style.transform?.match(/scale\(([^)]+)\)/)?.[1] || 1);
+      yesBtn.style.transform = `scale(${Math.min(currentScale + 0.08, 2.2)})`;
+    });
+
+    noBtn.addEventListener('click', () => {
+      alert("You actually caught it?! 😭💔\n\n...but deep down you know you want to say Yes 🥺\nTry again hehe");
+      dodgeCount = Math.max(0, dodgeCount - 3);
+      noBtn.textContent = noPhrases[Math.max(0, dodgeCount-3)] || "No 😔";
+      noBtn.style.left = '50%';
+      noBtn.style.top = 'auto';
+      noBtn.style.transform = 'translateX(-50%)';
+    });
+  </script>
+
+</body>
 </html>
-
-<!--
-MkDocs version : 1.5.3
-Build Date UTC : 2024-03-05 03:16:06.719500+00:00
--->
